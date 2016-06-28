@@ -1,6 +1,5 @@
 #to fix - when you load with a different url, gets the same images as from the previous page
 
-
 from bottle import get, post, run, static_file, route, template
 import sys
 from PIL import Image
@@ -25,7 +24,6 @@ def parseURLs(username, maxItems):
             suffix = item['url'].split('/')[-1].split('?')[0].split('.')[1]
             if suffix == "jpg":
                 urls.append(item['url'] )
-
     return urls
 
 def parseValues(urls):
@@ -58,12 +56,8 @@ def parseValues(urls):
     return values
 
 def pageContents(urls, values):
-
     zipped = zip(urls, values)
-
     page = template('colors', zipped = zipped)
-
-    print page
     return page
 
 @route('/instacolor/<username>')
@@ -84,9 +78,6 @@ def avgcolor(username):
     for value in values:
         returnedValues = returnedValues + value + '\r'
     return returnedValues
-
-
-
 
 run(host='localhost', port=8080)
 
